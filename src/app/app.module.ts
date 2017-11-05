@@ -1,23 +1,28 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpModule, Http, RequestOptions } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from './app.routes';
-import { TabsModule, AlertModule } from 'ng2-bootstrap';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {Http, HttpModule, RequestOptions} from '@angular/http';
+import {RouterModule} from '@angular/router';
+import {ROUTES} from './app.routes';
+import {AlertModule, TabsModule} from 'ng2-bootstrap';
 
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import {AuthConfig, AuthHttp} from 'angular2-jwt';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {ProfileComponent} from './profile/profile.component';
+import {InstructorComponent} from './instructor/instructor.component';
+import {NewInstructorComponent} from './new-instructor/new-instructor.component';
 
-import { AuthService } from './auth/auth.service';
+import {AuthService} from './auth/auth.service';
+import {InstructorService} from './instructor/instructor.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
-    tokenGetter: () => { return localStorage.getItem('token'); }
+    tokenGetter: () => {
+      return localStorage.getItem('token');
+    }
   }), http, options);
 }
 
@@ -26,7 +31,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProfileComponent
+    InstructorComponent,
+    ProfileComponent,
+    NewInstructorComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +49,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
       deps: [Http, RequestOptions]
-    }
+    },
+    InstructorService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
