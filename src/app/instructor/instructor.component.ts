@@ -22,8 +22,9 @@ export class InstructorComponent implements OnInit {
   }
 
   private getInstructors() {
-    // use the InstructorService to GET a listing
-    // of instructors to display in the view
+    this.instructorService.getInstructors()
+      .subscribe((data) => this.instructors = data,
+        err => this.errorMessage = err.json().message);
   }
 
   private getGravatar(email) {

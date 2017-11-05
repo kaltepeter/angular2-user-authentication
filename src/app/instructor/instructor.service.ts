@@ -1,23 +1,25 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-import { AuthHttp } from 'angular2-jwt';
-import { API_URL } from './../app.constants';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {AuthHttp} from 'angular2-jwt';
+import {API_URL} from '../app.constants';
+import {Instructor} from './instructor';
 
 
 @Injectable()
 export class InstructorService {
 
-  constructor(private http: Http, private authHttp: AuthHttp) { }
-
-  public getInstructors(): Observable<Response> {
-    // make a GET request to the /instructors endpoint to get
-    // a listing of instructors
+  constructor(private http: Http, private authHttp: AuthHttp) {
   }
 
-  public addInstructor(data): Observable<Response> {
-    // make a POST request to the /instructors endpoint to add
-    // a new instructor
+  public getInstructors(): Observable<Instructor[]> {
+    return this.authHttp.get(`${API_URL}/instructors`)
+      .map(response => response.json());
+  }
+
+  public addInstructor(data): Observable<Instructor> {
+    return this.authHttp.post(`${API_URL}/instructors`, data)
+      .map(response => response.json());
   }
 
 }

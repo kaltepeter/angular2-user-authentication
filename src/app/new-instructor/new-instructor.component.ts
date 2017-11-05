@@ -19,13 +19,15 @@ export class NewInstructorComponent implements OnInit {
   ngOnInit() {}
 
   addInstructor(data) {
-    // call the InstructorService to add a new
-    // instructor and redirect to the /instructor
-    // route if successful
+    this.instructorService.addInstructor(data)
+      .subscribe(data => {
+        this.goBack();
+      },
+        err => console.log(err));
   }
 
   goBack() {
-    this.location.back()
+    this.location.back();
   }
 
 }
