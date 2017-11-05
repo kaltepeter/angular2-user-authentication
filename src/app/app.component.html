@@ -7,7 +7,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav pull-right">
         <!-- create links for Log In and Log Out -->
-      </ul>      
+        <li><a routerLink="/login">Log In</a></li>
+        <li><a (click)="auth.logout()" routerLink="/home">Log Out</a></li>
+      </ul>
     </div>
   </div>
 </nav>
