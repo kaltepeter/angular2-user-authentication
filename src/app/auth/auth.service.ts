@@ -31,4 +31,12 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
   }
+
+  isAuthenticated(): boolean {
+    return tokenNotExpired('token');
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
 }

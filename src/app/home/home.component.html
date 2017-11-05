@@ -11,8 +11,8 @@
   </ul>
 
   <!-- only show the Log In link if the user isn't authenticated -->
-  <p><a class="btn btn-primary btn-lg" routerLink="/login" role="button">Log In</a></p>
+  <p *ngIf="!auth.isAuthenticated()"><a class="btn btn-primary btn-lg" routerLink="/login" role="button">Log In</a></p>
 
   <!-- only show the Log Out link if the user is authenticated -->
-  <p><a class="btn btn-primary btn-lg" (click)="auth.logout()" role="button">Log Out</a></p>
+  <p *ngIf="auth.isAuthenticated()"><a class="btn btn-primary btn-lg" (click)="auth.logout()" role="button">Log Out</a></p>
 </div>
