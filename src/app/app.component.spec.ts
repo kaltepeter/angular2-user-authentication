@@ -1,14 +1,19 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {async, TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {AuthService} from './auth/auth.service';
+import {MockAuthService} from '../test/MockAuthService';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('App: FemAuthAngular2', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [
         AppComponent
       ],
+      providers: [{provide: AuthService, useClass: MockAuthService}]
     });
   });
 

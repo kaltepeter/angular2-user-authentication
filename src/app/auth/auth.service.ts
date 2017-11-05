@@ -36,6 +36,10 @@ export class AuthService {
     return tokenNotExpired('token');
   }
 
+  isAdmin(): boolean {
+    return jwtDecode(this.getToken()).scope === 'admin';
+  }
+
   getToken(): string {
     return localStorage.getItem('token');
   }

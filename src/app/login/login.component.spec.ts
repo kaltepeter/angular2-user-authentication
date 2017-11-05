@@ -1,9 +1,11 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
+import {LoginComponent} from './login.component';
+import {AlertModule, TabsModule} from 'ng2-bootstrap';
+import {FormsModule} from '@angular/forms';
+import {AuthService} from '../auth/auth.service';
+import {MockAuthService} from '../../test/MockAuthService';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -11,9 +13,15 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      imports: [
+        FormsModule,
+        TabsModule.forRoot(),
+        AlertModule.forRoot()
+      ],
+      declarations: [LoginComponent],
+      providers: [{provide: AuthService, useClass: MockAuthService}]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

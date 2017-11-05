@@ -4,6 +4,10 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { NewInstructorComponent } from './new-instructor.component';
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {InstructorService} from '../instructor/instructor.service';
+import {MockInstructorService} from '../../test/MockInstructorService';
 
 describe('NewInstructorComponent', () => {
   let component: NewInstructorComponent;
@@ -11,7 +15,9 @@ describe('NewInstructorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewInstructorComponent ]
+      imports: [FormsModule, RouterTestingModule],
+      declarations: [ NewInstructorComponent ],
+      providers: [{provide: InstructorService, useClass: MockInstructorService}]
     })
     .compileComponents();
   }));

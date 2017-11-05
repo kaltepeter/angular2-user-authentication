@@ -17,6 +17,8 @@ import {NewInstructorComponent} from './new-instructor/new-instructor.component'
 
 import {AuthService} from './auth/auth.service';
 import {InstructorService} from './instructor/instructor.service';
+import {AuthGuard} from './auth/authguard.service';
+import {RoleGuard} from './auth/roleguard.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -45,6 +47,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
   providers: [
     AuthService,
+    AuthGuard,
+    RoleGuard,
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,

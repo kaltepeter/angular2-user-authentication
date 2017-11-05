@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { HomeComponent } from './home.component';
+import {AuthService} from '../auth/auth.service';
+import {MockAuthService} from '../../test/MockAuthService';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -11,7 +13,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent ],
+      providers: [{provide: AuthService, useClass: MockAuthService}]
     })
     .compileComponents();
   }));
