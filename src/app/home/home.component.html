@@ -10,7 +10,9 @@
     <li>Make requests for server resources that require a specific <code>scope</code> to be present in the JWT payload</li>
   </ul>
 
-  <!-- create buttons for Log In and Log Out -->
-  <button class="btn btn-primary" routerLink="/login">Log In</button>
-  <button class="btn btn-primary" (click)="auth.logout()" routerLink="/home">Log Out</button>
+  <!-- only show the Log In link if the user isn't authenticated -->
+  <p><a class="btn btn-primary btn-lg" routerLink="/login" role="button">Log In</a></p>
+
+  <!-- only show the Log Out link if the user is authenticated -->
+  <p><a class="btn btn-primary btn-lg" (click)="auth.logout()" role="button">Log Out</a></p>
 </div>

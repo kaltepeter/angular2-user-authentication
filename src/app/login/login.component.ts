@@ -17,9 +17,6 @@ export class LoginComponent {
   }
 
   onLoginSubmit(credentials) {
-    // call the login method on the AuthService
-    // and call finishAuthentication if successful,
-    // or display an error if unsuccessful
     this.auth.login(credentials)
       .subscribe(
         (token) => {
@@ -30,9 +27,6 @@ export class LoginComponent {
   }
 
   onSignupSubmit(credentials) {
-    // call the signup method on the AuthService
-    // and call finishAuthentication if successful,
-    // or display an error if unsuccessful
     this.auth.signup(credentials)
       .subscribe(
         (token) => {
@@ -44,10 +38,6 @@ export class LoginComponent {
 
   handleErrors(err) {
     this.errorMessage = err.message;
-    // for (const key of err.validation.keys) {
-    //   const field = this.loginForm.form.controls[key];
-    //   field.setErrors('required', true);
-    // }
   }
 
 }
